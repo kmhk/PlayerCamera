@@ -14,6 +14,7 @@
 		CE0927112241E6E300185631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0927102241E6E300185631 /* Assets.xcassets */; };
 		CE0927142241E6E300185631 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0927122241E6E300185631 /* LaunchScreen.storyboard */; };
 		CE84914B2241FBD200D56701 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84914A2241FBD200D56701 /* CameraViewModel.swift */; };
+		CE84914D224218E200D56701 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84914C224218E200D56701 /* PlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CE0927132241E6E300185631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE0927152241E6E300185631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE84914A2241FBD200D56701 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		CE84914C224218E200D56701 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +50,6 @@
 				4E5074BE846A6F9DE8D036F3 /* Pods-PlayerVideo.debug.xcconfig */,
 				CDFC508FBB72877785901931 /* Pods-PlayerVideo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -75,6 +76,7 @@
 			children = (
 				CE8491492241FB0800D56701 /* ViewModel */,
 				CE0927092241E6E100185631 /* AppDelegate.swift */,
+				CE84914C224218E200D56701 /* PlayerViewController.swift */,
 				CE09270B2241E6E100185631 /* ViewController.swift */,
 				CE09270D2241E6E100185631 /* Main.storyboard */,
 				CE0927102241E6E300185631 /* Assets.xcassets */,
@@ -221,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE09270C2241E6E100185631 /* ViewController.swift in Sources */,
+				CE84914D224218E200D56701 /* PlayerViewController.swift in Sources */,
 				CE09270A2241E6E100185631 /* AppDelegate.swift in Sources */,
 				CE84914B2241FBD200D56701 /* CameraViewModel.swift in Sources */,
 			);

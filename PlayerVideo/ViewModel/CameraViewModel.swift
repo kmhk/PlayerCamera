@@ -12,7 +12,13 @@ import SCRecorder
 
 var sharedCameraViewModel: CameraViewModel?
 
-let maxDuration = 20
+let maxDuration = 5
+
+
+protocol CameraViewModelDelegate: AnyObject {
+    func isStartedRecording(isRecording: Bool)
+    func finishedRecord()
+}
 
 
 class CameraViewModel: NSObject
@@ -20,6 +26,7 @@ class CameraViewModel: NSObject
     // MARK: memeber variable
     
     var recorder = SCRecorder()
+    weak var delegate: CameraViewModelDelegate?
     
     // MARK: static method
     
@@ -43,12 +50,29 @@ class CameraViewModel: NSObject
     
     func initRecorder(with view: UIView!) {
         recorder.videoConfiguration.size = view.bounds.size
+        recorder.previewView = view
     }
     
     func releaseRecorder() {
         recorder.stopRunning()
     }
     
+    func shotRecording() {
+        if recorder.isRecording {
+            recorder.pause {[weak self] in
+                self?.finishedRecording()
+            }
+            
+            delegate?.isStartedRecording(isRecording: false)
+            
+        } else {
+            recorder.record()
+            
+            delegate?.isStartedRecording(isRecording: true)
+        }
+    }
+    
+    /*
     func startRecording() {
         recorder.record()
     }
@@ -61,10 +85,10 @@ class CameraViewModel: NSObject
         } else {
             finishedRecording()
         }
-    }
+    }*/
     
     func finishedRecording() {
-        
+        self.delegate?.finishedRecord()
     }
     
     // MARK: private method
@@ -73,7 +97,7 @@ class CameraViewModel: NSObject
         //weak var weakSelf = self
         
         recorder.captureSessionPreset = SCRecorderTools.bestCaptureSessionPresetCompatibleWithAllDevices()
-        recorder.device = AVCaptureDevice.Position.back
+        recorder.device = .back
         recorder.maxRecordDuration = CMTime(value: CMTimeValue(maxDuration * 1000), timescale: 1000)
         recorder.delegate = self
         
@@ -103,10 +127,12 @@ class CameraViewModel: NSObject
 extension CameraViewModel: SCRecorderDelegate
 {
     func recorder(_ recorder: SCRecorder, didComplete session: SCRecordSession) {
+        NSLog("recorder didComlete")
         finishedRecording()
     }
     
     func recorder(_ recorder: SCRecorder, didComplete segment: SCRecordSessionSegment?, in session: SCRecordSession, error: Error?) {
+        NSLog("recorder didComlete with segment")
         finishedRecording()
     }
 }
